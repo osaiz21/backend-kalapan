@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Examen",
+  "main": "index.js",
+  "scripts": {
+    "start-dev": "DEBUG=kalapan:* nodemon index.js",
+    "start-prod": "node index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osaiz21/cheil-colombia.git"
+  },
+  "author": "saizandres21@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osaiz21/cheil-colombia/issues"
+  },
+  "homepage": "https://github.com/osaiz21/cheil-colombia#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "db": "file:./db/",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "debug": "^4.3.1",
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db:
+    image: mysql
+    restart: always
+    privileged: true
+    environment:
+      MYSQL_ROOT_PASSWORD: cheil
+      MYSQL_USER: cheil
+      MYSQL_DATABASE: cheil
+      MYSQL_ROOT_PASSWORD: cheil
+    volumes: 
+      - "./data:/var/lib/mysql"
+    ports:
+      - "3307:3306"
+  
