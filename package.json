@@ -4,9 +4,11 @@
   "description": "Examen",
   "main": "index.js",
   "scripts": {
-    "start-dev": "npm i db/ && DEBUG=kalapan:* nodemon index.js",
+    "depencias_db": "npm i db ",
+    "depencias_server": "npm i",
+    "start-dev": "npm run depencias_db && npm run depencias_server && DEBUG=kalapan:* nodemon index.js",
     "start-prod": "node index.js",
-    "start": "npm i db/ && node index.js"
+    "start": "npm run depencias_db && npm run depencias_server && node index.js"
   },
   "repository": {
     "type": "git",
