@@ -11,13 +11,16 @@ app.use(cors())
 // Formater Data.
 app.use(express.json())
 // Controladores.
-const { 
-  listarProductos,
-  actualizarProductos
-} = require('./controlador/Productos')
+// const { 
+//   listarProductos,
+//   actualizarProductos
+// } = require('./controlador/Productos')
 
-app.get('/productos', listarProductos)
-app.put('/productos/:id', actualizarProductos)
+// app.get('/productos', listarProductos)
+app.get('/productos', (req, res) => {
+  res.send('hola Kalapan');
+})
+// app.put('/productos/:id', actualizarProductos)
 
 app.listen(port, () => {
     debug(`listen port: ${port}` )
