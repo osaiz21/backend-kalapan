@@ -20,6 +20,9 @@ app.use(express.json())
 app.get('/productos', (req, res) => {
   res.send('hola Kalapan');
 })
+app.get('/', (req, res) => {
+  res.send('hola Kalapan');
+})
 // app.put('/productos/:id', actualizarProductos)
 
 app.listen(port, () => {
