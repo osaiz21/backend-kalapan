@@ -1,12 +1,21 @@
 const debug = require('debug')('kalapan:controlador-productos')
-const { productos } = require('db')
+const { productos, Op } = require('db')
 const listarProductos = async (req,res) => {
     try {
+        console.log(req.query.codigo)
         res.send(
-            await productos.findAll() || []
+            await productos.findAll({
+                where: {
+                    ["p.data->'codigo_barras'"] : {
+                        [Op.and] : { 
+                            codigo_barras :[req.query.codigo]
+                        }
+                    }
+                }
+            }) || []
         )
     }catch(error){
-        await reportar(error)
+        await reportar(res, error)
     }
 }
 const actualizarProductos = async (req,res) => {
@@ -35,7 +44,7 @@ const actualizarProductos = async (req,res) => {
             }
         )
     } catch (error){
-        await reportar(error)
+        await reportar(res, error)
     }
 }
 
@@ -45,7 +54,24 @@ const reportar = async (res, error) => {
         mns
     })
 }
+
+const createProductos = async (req, res) => {
+    try {
+        const result = await productos.create(
+            {
+                data: {
+                    ...req.body
+                }
+            }
+        )
+        res.send(result)
+    }catch(error) {
+        await reportar(res,error)
+    }    
+}
+
 module.exports = {
     listarProductos,
-    actualizarProductos
+    actualizarProductos,
+    createProductos
 }

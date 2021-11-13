@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/osaiz21/cheil-colombia#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "db": "file:db",
     "dotenv": "^9.0.0",
