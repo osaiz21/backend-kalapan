@@ -71,7 +71,8 @@ const createProductos = async (req, res) => {
         const result = await productos.create(
             {
                 data: {
-                    ...req.body
+                    ...req.body,
+                    activo: '1'
                 }
             }
         )
