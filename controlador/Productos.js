@@ -1,19 +1,30 @@
 const debug = require('debug')('kalapan:controlador-productos')
-const { productos, Op } = require('db')
+const { productos, sequelize, QueryTypes } = require('db')
 const listarProductos = async (req,res) => {
     try {
-        console.log(req.query.codigo)
-        res.send(
-            await productos.findAll({
-                where: {
-                    ["p.data->'codigo_barras'"] : {
-                        [Op.and] : { 
-                            codigo_barras :[req.query.codigo]
-                        }
-                    }
-                }
-            }) || []
-        )
+       const result = await sequelize.query(
+           `select
+                distinct
+                t.id,
+                t.data 
+            from (
+            select
+                replace(jsonb_array_elements(p.data->'codigo_barras')::text,'"','') as condicional,	
+                p.id,
+                P.data
+            from
+                productos p
+            where 
+                p.data->'activo'::text = '1'
+            ) as t where t.condicional = '${req.query.codigo}'`,
+           {
+            type: QueryTypes,
+            plain: false,
+            raw: false
+           }
+        );
+        const newResult = result[0].map(key => key.data)
+        res.send(newResult)
     }catch(error){
         await reportar(res, error)
     }

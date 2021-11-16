@@ -23,6 +23,7 @@ const creardefiniciones = async ( deficiones ) => {
 }
 
 module.exports = {
-    creardefiniciones
+    creardefiniciones,
+    sequelize
 }
 

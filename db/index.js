@@ -1,4 +1,4 @@
-const {creardefiniciones} = require('./config/conexion')
+const {creardefiniciones, sequelize} = require('./config/conexion')
 const { productos }  = require('./models/productos')
 const { categoria } = require('./models/categoria')
 const debug = require('debug')('kalapan:db')
@@ -24,7 +24,8 @@ const ejecutar = async () => {
 
 module.exports = {
   productos,
-  categoria
+  categoria,
+  sequelize
 }
 
 
